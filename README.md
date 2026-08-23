@@ -1,50 +1,65 @@
-# csharp-revision-gitbook
+# .NET + React Full-Stack Interview Preparation
 
-> **Purpose:** Use this as your go-to C# fundamentals warm-up before interviews.
+> **Purpose:** A structured interview prep guide covering C#, JavaScript, and TypeScript — everything you need for a full-stack .NET + React role.
 
-> **Revision method:** Read the definition → understand the mental model → look at the example → explain it yourself → move on.
+> **Revision method:** Read the definition → understand the mental model → study the example → explain it yourself → move on.
+
+## What's inside
+
+| Section | Topics covered |
+|---|---|
+| **C# Fundamentals** | Type system, memory, variables, parameter passing, boxing, strings, equality |
+| **C# OOP** | Encapsulation, abstraction, inheritance, polymorphism, overloading vs overriding |
+| **C# Language Features** | Interfaces, abstract classes, access modifiers, generics |
+| **C# Interview Revision** | Rapid-fire checklist, 30-second warm-up, interview-day quick reference |
+| **JavaScript Fundamentals** | Variables, types, operators, conditionals, loops |
+| **JavaScript Functions** | Functions, arrow functions, callbacks, higher-order functions, modules |
+| **JavaScript Data Structures** | Arrays, map/filter/find, objects, destructuring, spread & rest |
+| **JavaScript Async** | Promises, async/await, fetch, error handling |
+| **JavaScript Advanced** | Scope, closures, reference vs value, `this`, event loop |
+| **TypeScript Fundamentals** | TypeScript vs JavaScript, basic types, type inference |
+| **TypeScript Type System** | Interfaces, optional properties, type aliases, union types, type narrowing |
+| **TypeScript Advanced** | Function types, generics, typing API responses |
+| **Front-End Interview Revision** | Rapid-fire JS/TS checklists, warm-up, common traps & corrections |
 
 ## How to use this guide
 
-1. Start with the **30-Second C# Fundamentals Warm-Up** near the end when you need a quick refresher.
-2. For deeper revision, work through the chapters in order.
-3. Use the **Rapid-Fire Interview Checklist** to test yourself without looking at the answers.
-4. Finish with the **Final Memory Map** to connect the concepts.
+### For a quick pre-interview refresh (30 minutes)
 
-## Chapters
+1. Run through the **30-Second C# Fundamentals Warm-Up** and **30-Second JS & TypeScript Warm-Up**.
+2. Skim the **Rapid-Fire Checklists** for C#, JavaScript, and TypeScript.
+3. Review **Common Interview Traps & Corrections** to avoid classic mistakes.
 
-- [1. C# Type System & Memory](chapter-01-c-type-system-memory.md)
-- [2. Variables, Fields, Properties & Objects](chapter-02-variables-fields-properties-objects.md)
-- [3. Parameter Passing](chapter-03-parameter-passing.md)
-- [4. const, readonly, var & dynamic](chapter-04-const-readonly-var-dynamic.md)
-- [5. Boxing & Unboxing](chapter-05-boxing-unboxing.md)
-- [6. string & StringBuilder](chapter-06-string-stringbuilder.md)
-- [7. Equality: ==, Equals, ReferenceEquals](chapter-07-equality-equals-referenceequals.md)
-- [8. is & as](chapter-08-is-as.md)
-- [9. OOP Fundamentals](chapter-09-oop-fundamentals.md)
-- [10. Encapsulation](chapter-10-encapsulation.md)
-- [11. Abstraction](chapter-11-abstraction.md)
-- [12. Inheritance & Composition](chapter-12-inheritance-composition.md)
-- [13. Polymorphism](chapter-13-polymorphism.md)
-- [14. Overloading vs Overriding](chapter-14-overloading-vs-overriding.md)
-- [15. Interface vs Abstract Class](chapter-15-interface-vs-abstract-class.md)
-- [16. Access Modifiers](chapter-16-access-modifiers.md)
-- [17. Generics](chapter-17-generics.md)
-- [18. Rapid-Fire Interview Checklist](chapter-18-rapid-fire-interview-checklist.md)
-- [19. 30-Second C# Fundamentals Warm-Up](chapter-19-30-second-c-fundamentals-warm-up.md)
+### For structured deep revision
 
-## Interview routine
+1. Work through each section in order — C# first, then JavaScript, then TypeScript.
+2. After each topic: **close the page and explain it out loud**. If you can't, re-read it.
+3. Use the interview revision sections at the end to self-test.
 
-### 15-minute warm-up
+### On interview day
 
-- **Minutes 1–3:** Type system + value/reference + stack/heap
-- **Minutes 4–6:** Parameter passing + const/readonly + var/dynamic
-- **Minutes 7–9:** Boxing + string + equality
-- **Minutes 10–12:** Four OOP pillars + inheritance/polymorphism
-- **Minutes 13–15:** Interface/abstract class + access modifiers + generics
+- Open **Interview Day Quick Reference** (C#) for a one-page brain dump.
+- Scan the **Common Interview Traps** page to stay sharp on gotchas.
 
-Then ask yourself:
+## Folder structure
 
-> **Can I explain each concept without reading the answer?**
+```
+csharp/
+├── fundamentals/
+├── oop/
+├── language-features/
+└── interview-revision/
 
-If yes, move on to deeper interview topics.
+front-end/
+├── javascript/
+│   ├── fundamentals/
+│   ├── functions/
+│   ├── data-structures/
+│   ├── async/
+│   └── advanced/
+├── typescript/
+│   ├── fundamentals/
+│   ├── type-system/
+│   └── advanced/
+└── interview/
+```
