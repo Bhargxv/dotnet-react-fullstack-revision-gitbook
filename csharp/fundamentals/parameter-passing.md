@@ -1,129 +1,57 @@
-# 3. Parameter Passing
+# Parameter Passing
 
-## Default Parameter Passing
+## ⚡ Quick Revision
+**Mental model:** C# passes parameters by value by default. Ask: **what is being copied?**
 
-**Definition:** C# passes parameters by value by default.
+| Form | Mental model | Caller initializes? | Method can modify caller variable? |
+|---|---|---:|---:|
+| Default | copy it | Yes | No |
+| `ref` | change mine | Yes | Yes |
+| `out` | produce mine | No | Yes |
+| `in` | look at mine | Yes | No |
 
-The important question is:
-
-> What is being copied?
-
-### Value type
+## 🧠 Understanding
+For a value type, the value is copied. For a reference type, the reference is copied, so the method parameter and caller variable can refer to the same object.
 
 ```csharp
-void Update(int x)
+void Update(Person p)
 {
-    x = 50;
+    p.Age = 50;       // mutation: caller sees it
+    p = new Person(); // reassignment: caller reference unchanged
 }
+```
 
+This distinction is the root of many interview traps.
+
+### `ref`
+`ref` gives the method an alias to the caller's variable itself.
+
+```csharp
+void Change(ref int x) => x = 20;
 int a = 10;
-Update(a);
-
-// a is still 10
+Change(ref a); // a == 20
 ```
 
-The value was copied.
+The caller must initialize the variable before passing it.
 
-### Reference type
+### `out`
+`out` is used when the method is responsible for producing a value. The caller doesn't initialize it; the method must assign it before returning.
 
 ```csharp
-void Update(Person p)
-{
-    p.Age = 50;
-}
-
-Person p1 = new Person();
-p1.Age = 20;
-
-Update(p1);
-
-// p1.Age is now 50
+if (int.TryParse("123", out int value)) { }
 ```
 
-Here, the **reference was copied**, not the object.
-
-Both variables point to the same object.
-
-```text
-Caller:
-p1 ─────────────┐
-                ↓
-              Person
-              Age = 50
-                ↑
-Method:
-p  ─────────────┘
-```
-
-### Critical distinction
+### `in`
+`in` provides read-only by-reference access. It can avoid copying larger value types while preserving read-only semantics.
 
 ```csharp
-void Update(Person p)
-{
-    p.Age = 50;       // object mutation
-    p = new Person(); // parameter reassignment
-}
+void Print(in LargeStruct value) { }
 ```
 
-- `p.Age = 50` changes the shared object.
-- `p = new Person()` changes only the local parameter variable.
+## 🎤 Interview Answer
+> "C# passes parameters by value by default. For value types, the value is copied. For reference types, the reference is copied, not the object, so the method can mutate the shared object but reassigning its local parameter doesn't reassign the caller's variable. `ref` lets us work with the caller's variable, `out` lets the method produce a value, and `in` provides read-only by-reference access."
 
-**Interview definition:**
-
-> A method parameter of a reference type is a local variable containing a copy of the caller's reference.
-
----
-
-## ref
-
-**Definition:** `ref` passes the caller's variable by reference, allowing the method to read and replace the caller's variable itself.
-
-```csharp
-void Reset(ref Person p)
-{
-    p = new Person();
-}
-
-Person person = new Person();
-
-Reset(ref person);
-```
-
-**Memory hook:**
-
-> `ref` = method gets an alias to the caller's variable.
-
----
-
-## out
-
-**Definition:** `out` passes a variable by reference and requires the called method to assign it before returning.
-
-Classic example:
-
-```csharp
-if (int.TryParse("123", out int value))
-{
-    Console.WriteLine(value);
-}
-```
-
-**Memory hook:**
-
-> `out` = "I promise to produce a value."
-
----
-
-## in
-
-**Definition:** `in` passes an argument by reference but prevents the method from modifying it through that parameter.
-
-**Why use it?**
-
-It can avoid copying large value types while keeping read-only semantics.
-
-**Memory hook:**
-
-> `in` = reference, but read-only.
-
----
+## 🔄 Likely Follow-ups
+- **Is a reference type passed by reference by default?** No.
+- **`ref` vs `out`?** `ref` requires an existing value; `out` is for producing a value.
+- **Why use `in`?** Mainly to avoid copying larger value types while keeping the argument read-only.

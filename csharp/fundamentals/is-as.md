@@ -1,49 +1,26 @@
-# 8. is & as
+# `is` vs `as`
 
-## is
+## ⚡ Quick Revision
+**Mental model:** `is` = check compatibility/pattern. `as` = attempt compatible reference/nullable conversion, otherwise null.
 
-**Definition:** `is` checks whether an object is compatible with a type and can also perform pattern matching.
+## 🧠 Understanding
+Use `is` when you need to test a type and possibly pattern-match it.
 
 ```csharp
 if (obj is Person p)
-{
     Console.WriteLine(p.Name);
-}
 ```
 
-**Memory hook:**
-
-> `is` = "Is this compatible with that type?"
-
----
-
-## as
-
-**Definition:** `as` attempts a compatible reference/nullable conversion and returns `null` if the conversion cannot be performed.
+Use `as` when a compatible reference/nullable conversion is appropriate and failure should produce `null`.
 
 ```csharp
 Person p = obj as Person;
-
-if (p != null)
-{
-    Console.WriteLine(p.Name);
-}
 ```
 
-**Memory hook:**
+`as` doesn't work with non-nullable value types such as `int`, `double`, and `bool`.
 
-> `as` = try conversion; if it fails, give null.
+## 🎤 Interview Answer
+> "`is` checks type compatibility and can perform pattern matching. `as` attempts a compatible reference or nullable conversion and returns null if it can't convert."
 
-### Important nuance
-
-`as` cannot be used with non-nullable value types such as:
-
-```csharp
-int
-double
-bool
-```
-
-For those, use pattern matching or explicit conversion where appropriate.
-
----
+## 🔄 Likely Follow-ups
+- **Which should I prefer?** Pattern matching with `is` is often clearer when you need both the check and the converted value.

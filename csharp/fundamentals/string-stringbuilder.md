@@ -1,65 +1,26 @@
-# 6. string & StringBuilder
+# string vs StringBuilder
 
-## string
+## ⚡ Quick Revision
+**Mental model:** `string` is immutable; `StringBuilder` is designed for repeated mutation.
 
-**Definition:** `string` is a reference type whose instances are immutable.
-
-Immutable means:
-
-> Once a string object exists, its contents cannot be changed.
+## 🧠 Understanding
+A string operation that appears to modify a string creates another string because strings are immutable.
 
 ```csharp
-string name = "Sunny";
-
-name += " Bhargav";
+string s = "Hello";
+s += " World";
 ```
 
-The original string is not modified. A new string is produced.
-
-**Why it matters:**
-
-Repeated modifications can create many string allocations.
-
-**Memory hook:**
-
-> `string` = immutable text.
-
----
-
-## StringBuilder
-
-**Definition:** `StringBuilder` is a mutable text-building type that maintains an internal buffer and can grow it as needed.
+For many repeated modifications, `StringBuilder` can reuse its internal buffer and reduce intermediate string allocations.
 
 ```csharp
 var sb = new StringBuilder();
-
-sb.Append("Hello");
-sb.Append(" ");
-sb.Append("Sunny");
-
-string result = sb.ToString();
+sb.Append("Hello").Append(" World");
 ```
 
-**Use when:**
+## 🎤 Interview Answer
+> "`string` is immutable, so operations that change its contents create new string values. `StringBuilder` is useful when I need many repeated modifications because it can build the result using a mutable buffer and reduce intermediate allocations."
 
-- many repeated modifications
-- loops
-- building large text
-- generating long documents/queries/output
-
-**Don't use it automatically.**
-
-For a few concatenations:
-
-```csharp
-string fullName = firstName + " " + lastName;
-```
-
-is perfectly fine.
-
-**Memory hook:**
-
-> Many edits → StringBuilder  
-> Few edits → normal string is usually fine
-
----
+## 🔄 Likely Follow-ups
+- **Does every concatenation require StringBuilder?** No. Simple or compiler-optimized concatenation is often perfectly fine.
+- **Why is string immutable?** It supports safe sharing, predictable behavior and string interning.

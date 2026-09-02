@@ -1,78 +1,22 @@
-# 5. Boxing & Unboxing
+# Boxing & Unboxing
 
-## Boxing
+## ⚡ Quick Revision
+**Mental model:** Value type → object = boxing. Object containing value → value type = unboxing.
 
-**Definition:** Boxing converts a value type into an object/reference representation, creating a boxed object containing the value.
+## 🧠 Understanding
+Boxing creates an object representation containing a value-type value. This can involve allocation and copying.
 
 ```csharp
 int x = 10;
-
 object obj = x; // boxing
+int y = (int)obj; // unboxing
 ```
 
-Conceptually:
+Unboxing requires the compatible value type. Boxing can add allocation and GC pressure, which is why generics often avoid it.
 
-```text
-x
-10
+## 🎤 Interview Answer
+> "Boxing converts a value type into an object representation, which can require an allocation and copy. Unboxing extracts the value type from that boxed object and requires a compatible type."
 
-      boxing
-        ↓
-
-HEAP
-┌──────────────┐
-│ boxed int 10 │
-└──────────────┘
-        ↑
-       obj
-```
-
-**Why it matters:**
-
-Boxing can involve:
-
-- heap allocation
-- copying the value
-- additional GC pressure
-
----
-
-## Unboxing
-
-**Definition:** Unboxing explicitly extracts the value type from a boxed object.
-
-```csharp
-int y = (int)obj;
-```
-
-The target type must match the boxed value.
-
-```csharp
-object obj = 10;
-
-int x = (int)obj;      // correct
-string s = (string)obj; // InvalidCastException
-```
-
-**Memory hook:**
-
-> Value type → object = boxing  
-> Object box → exact value type = unboxing
-
-### Important example
-
-```csharp
-int x = 10;
-object obj = x;
-
-x = 20;
-
-// obj still contains boxed 10
-```
-
-There are two separate values:
-
-- original `x`
-- boxed copy inside `obj`
-
----
+## 🔄 Likely Follow-ups
+- **Why can boxing hurt performance?** It may allocate and create GC pressure.
+- **How do generics help?** Type-safe generic collections can avoid boxing value types.

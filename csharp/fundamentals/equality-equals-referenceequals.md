@@ -1,71 +1,25 @@
-# 7. Equality: ==, Equals, ReferenceEquals
+# Equality: `==`, `Equals`, `ReferenceEquals`
 
-## ==
+## ⚡ Quick Revision
+**Mental model:** `==` = operator-defined equality. `Equals` = equality method. `ReferenceEquals` = same object instance.
 
-**Definition:** `==` is an operator whose behavior depends on the type/operator implementation.
-
-For ordinary reference types, it normally checks reference equality unless the type overloads the operator.
-
-`string` is an important exception because it overloads `==` for content comparison.
+## 🧠 Understanding
+`==` depends on the type/operator overload. `Equals` can be overridden to define value equality. `ReferenceEquals` specifically asks whether two references identify the same object instance.
 
 ```csharp
-string a = "Hello";
-string b = "Hello";
-
-Console.WriteLine(a == b); // true
-```
-
-**Memory hook:**
-
-> `==` depends on the type.
-
----
-
-## Equals()
-
-**Definition:** `Equals()` is a method used for equality comparison. Types can override it to define value-based equality.
-
-For example, `string` overrides it so equal text compares as equal.
-
-```csharp
-string a = "Hello";
-string b = "Hello";
-
-a.Equals(b); // true
-```
-
----
-
-## ReferenceEquals()
-
-**Definition:** `ReferenceEquals()` checks whether two references refer to the exact same object instance.
-
-```csharp
-ReferenceEquals(p1, p2);
-```
-
-**Memory hook:**
-
-> `ReferenceEquals` = "Are these the same object?"
-
-### Plain class example
-
-```csharp
-class Person
-{
-    public string Name { get; set; }
-}
-
 Person p1 = new Person { Name = "A" };
 Person p2 = new Person { Name = "A" };
 
-p1 == p2;                 // false
-p1.Equals(p2);            // false
+p1 == p2;                 // false for a plain class
+p1.Equals(p2);            // false unless equality is overridden
 ReferenceEquals(p1, p2);  // false
 ```
 
-Why?
+`string` is an important exception because it defines content-based equality for `==` and `Equals`.
 
-They contain similar data but are different objects.
+## 🎤 Interview Answer
+> "I don't treat these as synonyms. `==` uses the type's operator semantics, `Equals` is an equality method that can be overridden, and `ReferenceEquals` checks whether two references point to the exact same object instance."
 
----
+## 🔄 Likely Follow-ups
+- **Why does string `==` compare content?** `string` overloads the operator.
+- **How do value objects compare?** They can override equality or use appropriate value-based equality implementations.
